@@ -1,4 +1,4 @@
-package example
+package main
 
 import (
 	"github.com/radrupt/wheelTimer"
@@ -17,7 +17,7 @@ func startTimerTask(
 	w.NewTimeOut(d, 10)
 	w.NewTimeOut(d, 15)
 }
-func New(
+func Start(
 	w *wheelTimer.WheelTimer,
 ) error {
 	startTimerTask(w)

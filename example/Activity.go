@@ -1,4 +1,4 @@
-package example
+package main
 
 // 签到定时提醒
 
