@@ -3,7 +3,6 @@ package example
 import (
 	"github.com/radrupt/wheelTimer"
 )
-
 type listenRedisTask struct {
 	w *wheelTimer.WheelTimer
 }
