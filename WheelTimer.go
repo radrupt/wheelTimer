@@ -11,7 +11,7 @@ var mutex sync.Mutex
 type WheelTimer struct {
 	tickDuration int // 每转一格的时间， 单位s
 	ticksPerWheel int // 轮盘的长度
-	mask         int // 掩码
+	mask         int // 掩码, 用于循环
 	WheelBucket  []Bucket
 	// 状态
 	// "WORKER_STATE_INIT"
@@ -80,18 +80,17 @@ func (w *WheelTimer) NewTimeOut(task Task, timeInterval int) {
 
 func turn(w *WheelTimer) {
 	defer wg.Done()
-	var sec int
 	for {
 		if w.state == "WORKER_STATE_SHUTDOWN" {
 			break
 		}
 		idx := w.tick & w.mask
 		w.WheelBucket[idx].Expire()
+		//控制时间误差
 		nextTime := w.preTime + 1000000000
 		now := time.Now()
 		w.preTime = nextTime
 		time.Sleep(time.Duration(nextTime - now.UnixNano()) * time.Nanosecond)
-		sec += 1
 		w.tick = (w.tick + 1) & w.mask
 	}
 }
