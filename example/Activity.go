@@ -1,26 +1,17 @@
 package main
 
 import (
-	"github.com/radrupt/wheelTimer"
 	"fmt"
+	"time"
 )
 type Activity struct {
-	W *wheelTimer.WheelTimer
 	remainingRounds int
 	Name string
-}
-func (task *Activity) Create(
-	w *wheelTimer.WheelTimer,
-	name string,
-) (*Activity) {
-	return &Activity{
-		W: w,
-		Name: name,
-	}
 }
 
 func (t *Activity) Run(){
 	fmt.Println("excute activity: ", t.Name)
+	fmt.Println(time.Now())
 }
 
 func (t *Activity) UpdateRemainingRounds(i int){
