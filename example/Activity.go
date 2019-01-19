@@ -1,26 +1,26 @@
 package main
 
-// 签到定时提醒
-
 import (
 	"github.com/radrupt/wheelTimer"
-	"time"
 	"fmt"
 )
 type Activity struct {
 	W *wheelTimer.WheelTimer
 	remainingRounds int
+	Name string
 }
 func (task *Activity) Create(
 	w *wheelTimer.WheelTimer,
-) (*Activity, error) {
+	name string,
+) (*Activity) {
 	return &Activity{
 		W: w,
-	}, nil
+		Name: name,
+	}
 }
 
 func (t *Activity) Run(){
-	fmt.Println("excute activity", time.Now())
+	fmt.Println("excute activity: ", t.Name)
 }
 
 func (t *Activity) UpdateRemainingRounds(i int){
