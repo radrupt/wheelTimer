@@ -7,7 +7,6 @@ import (
 	"time"
 	"fmt"
 )
-
 type Activity struct {
 	W *wheelTimer.WheelTimer
 	remainingRounds int
